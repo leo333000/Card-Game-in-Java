@@ -2,6 +2,8 @@ package main;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 
@@ -9,16 +11,31 @@ import org.junit.Test;
 
 public class DeckTest {
     @Test
-    public void DrawCardFromTopOfDeckTest() {
+    public void shouldReadDeckFromFileTest() {
         
-        Deck deck1 = new Deck();
-        Card topCard = new Card(1);
-        Card bottomCard = new Card (0);
+        int numberOfPlayers = 4;
+        FileManager reader = new FileManager();
+        String testPath = "C:/Users/User/Documents/GitHub/card-game/test_resources/TestPack4Players.txt";
 
-        deck1.add(topCard);
-        deck1.add(bottomCard);
+        Deck deck1 = new Deck(reader.readDeckFile(testPath),numberOfPlayers);
+
+        assertEquals(3,deck1.drawTop().getNumber());
+        assertEquals(2,deck1.drawTop().getNumber());
+    
+    }
+    @Test
+    public void shouldReadTopCard() {
         
-        assertEquals(topCard,deck1.DrawTop());
+        int numberOfPlayers = 0;
+        
+        ArrayList<Integer> emptyIntegerList = new ArrayList<Integer>();
+        Deck deck1 = new Deck(emptyIntegerList,numberOfPlayers);
+
+        Card topCard = new Card(1);
+
+        deck1.add(0, topCard);
+        
+        assertEquals(1,deck1.drawTop().getNumber());
     
     }
 }
