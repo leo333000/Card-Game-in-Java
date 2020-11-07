@@ -1,7 +1,7 @@
 {   
     "java.test.config": {
-        "workingDirectory": "${workspaceFolder}",
-	
+        "workingDirectory": "${workspaceFolder}"
+    },
     "cSpell.words": [
         "initialisation",
         "initialise"

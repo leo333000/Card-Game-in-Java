@@ -19,7 +19,12 @@ public class FileManagerTest {
     public void ReadFileDeckTest() {
         FileManager read = new FileManager();
         ArrayList<Integer> test = new ArrayList<Integer>();
-        assertEquals(test, read.readDeckFile("C:/Users/User/Documents/GitHub/card-game/test_resources/testpackempty.txt"));
+        assertEquals(test, read.readDeckFile("./test_resources/testpackempty.txt"));
     
     }
+
+    @Test
+  public void currentDirTest(){
+    System.out.println("Working Directory = " + System.getProperty("user.dir"));   
+  }
 }
