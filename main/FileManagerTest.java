@@ -20,4 +20,9 @@ public class FileManagerTest {
         assertEquals(test, read.readDeckFile("./test_resources/testpackempty.txt"));
     
     }
+
+    @Test
+  public void currentDirTest(){
+    System.out.println("Working Directory = " + System.getProperty("user.dir"));   
+  }
 }
