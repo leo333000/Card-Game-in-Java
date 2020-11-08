@@ -1,0 +1,60 @@
+Player number 1 has added a 3 to his hand.
+Player number 1 has added a 2 to his hand.
+Player number 1 has added a 1 to his hand.
+Player number 1 has added a 2 to his hand.
+Player number 1 has added a 3 to player number 4's deck'.
+Player number 1 has added a 1 to his hand.
+
+
+Player number 1 has added a 2 to player number 4's deck'.
+Player number 1 has added a 4 to his hand.
+
+
+Player number 1 has added a 2 to player number 4's deck'.
+Player number 1 has added a 2 to his hand.
+
+
+Player number 1 has added a 4 to player number 4's deck'.
+Player number 1 has added a 3 to his hand.
+
+
+Player number 1 has added a 2 to player number 4's deck'.
+Player number 1 has added a 1 to his hand.
+
+
+Player number 1 has added a 3 to player number 4's deck'.
+Player number 1 has added a 3 to his hand.
+
+
+the winning player is player number 2
+current hand:  1113
+Player number 1 has added a 3 to his hand.
+Player number 1 has added a 2 to his hand.
+Player number 1 has added a 1 to his hand.
+Player number 1 has added a 2 to his hand.
+Player number 1 has added a 3 to player number 4's deck'.
+Player number 1 has added a 1 to his hand.
+
+
+Player number 1 has added a 2 to player number 4's deck'.
+Player number 1 has added a 4 to his hand.
+
+
+Player number 1 has added a 2 to player number 4's deck'.
+Player number 1 has added a 2 to his hand.
+
+
+the winning player is player number 2
+current hand:  1142
+Thread 1 exiting.
+Player number 1 has added a 3 to his hand.
+Player number 1 has added a 2 to his hand.
+Player number 1 has added a 1 to his hand.
+Player number 1 has added a 2 to his hand.
+Player number 1 has added a 3 to player number 4's deck'.
+Player number 1 has added a 1 to his hand.
+
+
+the winning player is player number 3
+current hand:  2121
+Thread 1 exiting.

@@ -15,7 +15,7 @@ public class DeckTest {
         
         int numberOfPlayers = 4;
         FileManager reader = new FileManager();
-        String testPath = "C:/Users/User/Documents/GitHub/card-game/test_resources/TestPack4Players.txt";
+        String testPath = "./test_resources/TestPack4Players.txt";
 
         Deck deck1 = new Deck(reader.readDeckFile(testPath),numberOfPlayers);
 

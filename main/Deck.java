@@ -27,9 +27,7 @@ public class Deck extends ArrayList<Card> {
 			  }
 		} else {
 			System.out.println("//!\\ERROR//!\\: THE AMOUNT OF NUMBERS IN THE FILE IS NOT EQUAL TO, " + numberOfPlayers*8);
-		}
-
-
+		  }
     }
 
     public Card drawTop() {
@@ -38,6 +36,7 @@ public class Deck extends ArrayList<Card> {
         return topCard;
     }
 
+    
     
 
 }

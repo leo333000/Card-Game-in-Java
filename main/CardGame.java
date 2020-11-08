@@ -8,6 +8,14 @@ public class CardGame {
     //standard global path to the pack.txt
     static String packFilePath = "resources/pack.txt";
 
+    //importance of the volatile keyword to make sure they all end the game in sync
+    static volatile Boolean gameFinished = false;
+
+    //-1 is the default value and only works if, when printed, is a positive int, relevant to a player's name
+    static volatile int winningPlayerNumber = -1;
+
+
+
     public static ArrayList<Player> setupPlayers(int iNumberOfPlayers){
         Player firstPlayer  =  new Player(1);
         ArrayList<Player> playerList = new ArrayList<Player>();
@@ -27,7 +35,46 @@ public class CardGame {
 
           return playerList;
         }
-    
+
+
+
+
+    public static ArrayList<Player> givePlayersTheirDecks(ArrayList<Player> iPlayerList, String iPath, int iNumberOfPlayers){
+
+        FileManager reader = new FileManager();
+        Deck aDeck = new Deck(reader.readDeckFile(iPath),iNumberOfPlayers);
+
+        for (int i = 0; i < (iPlayerList.size()); i++){
+            //the way setDeck() works is that it will clone the deck, so they are not all pointing to the same memory slot
+            iPlayerList.get(i).setDeck(aDeck);
+        }
+
+        return iPlayerList;
+        
+    }
+
+
+
+    public static void playersDrawTheirInitialCards(ArrayList<Player> iPlayerList){
+        for (int i = 0; i < (iPlayerList.size()); i++){
+
+            // each player must draw it's first 4 cards
+            iPlayerList.get(i).drawToHand();
+            iPlayerList.get(i).drawToHand();
+            iPlayerList.get(i).drawToHand();
+            iPlayerList.get(i).drawToHand();
+        }
+    }
+
+
+
+
+    public static void startTheGameForAllPlayers(ArrayList<Player> iPlayerList){
+        for (int i = 0; i < (iPlayerList.size()); i++){
+           
+            iPlayerList.get(i).start();
+        }
+    }
 
 
     /*
@@ -38,30 +85,38 @@ public class CardGame {
     */
     public static void main(String[] args) {
     
-    System.out.println("WELCOME! to the simplest card game: how many players are playing");
-    Scanner scanner = new Scanner(System.in);
+        System.out.println("WELCOME! to the simplest card game: how many players are playing");
+        Scanner scanner = new Scanner(System.in);
 
-    int numberOfPlayers = 4;
-    Boolean inputMade = false;
-    // get their input as a String
-    //less elegant that scanner.nextInt() but allows the user to try again if fail
-    while(inputMade == false)
-    try {
-        numberOfPlayers = Integer.parseInt(scanner.next());
-        inputMade = true;
-     }
-     catch (NumberFormatException e)
-     {
-        System.out.print("please try again  :");
-        numberOfPlayers = 0;
-        continue;
-     }
+        int numberOfPlayers = 4;
+        Boolean inputMade = false;
+        // get their input as a String
+        //less elegant that scanner.nextInt() but allows the user to try again if fail
+        while(inputMade == false)
+        try {
+            numberOfPlayers = Integer.parseInt(scanner.next());
+            System.out.print("\n now enter the file path of the deck (default 'resources/pack.txt')");
+            packFilePath = scanner.next();
+            inputMade = true;
+         }
+         catch (NumberFormatException e)
+         {
+            System.out.print("please try again  :");
+            numberOfPlayers = 0;
+            continue;
+         }
+     
+        System.out.print(numberOfPlayers);
+        scanner.close();
+
+        ArrayList<Player> PlayerList = setupPlayers(numberOfPlayers);
+        givePlayersTheirDecks(PlayerList, packFilePath, numberOfPlayers);
+        playersDrawTheirInitialCards(PlayerList);
+        startTheGameForAllPlayers(PlayerList);
 
 
     
-    System.out.print(numberOfPlayers);
-    scanner.close();
-
+    
 
 
 

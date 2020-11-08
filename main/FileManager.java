@@ -1,7 +1,10 @@
 package main;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -40,6 +43,19 @@ public class FileManager{
         return indexCards;
 
         }
+
+
+    public static void writeFile(String text, String playerPath) {
+        try {
+            File file = new File(playerPath);
+            BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
+            output.write(text);
+            output.newLine();
+            output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 

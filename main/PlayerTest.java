@@ -1,6 +1,9 @@
 package main;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -15,7 +18,7 @@ public class PlayerTest {
         int numberOfPlayers = 1;
 
         FileManager reader = new FileManager();
-        String testPath = "C:/Users/User/Documents/GitHub/card-game/test_resources/TestPack1Player.txt";
+        String testPath = "./test_resources/TestPack1Player.txt";
         Deck aDeck = new Deck(reader.readDeckFile(testPath),numberOfPlayers);
 
         assertEquals(8,aDeck.size());
@@ -40,7 +43,7 @@ public class PlayerTest {
         int numberOfPlayers = 2;
 
         FileManager reader = new FileManager();
-        String testPath = "C:/Users/User/Documents/GitHub/card-game/test_resources/TestPack2Players.txt";
+        String testPath = "./test_resources/TestPack2Players.txt";
         Deck aDeck = new Deck(reader.readDeckFile(testPath),numberOfPlayers);
 
         p1.setDeck(aDeck);
@@ -68,18 +71,34 @@ public class PlayerTest {
         int numberOfPlayers = 2;
 
         FileManager reader = new FileManager();
-        String testPath = "C:/Users/User/Documents/GitHub/card-game/test_resources/TestPack2Players.txt";
+        String testPath = "./test_resources/TestPack2Players.txt";
         Deck aDeck = new Deck(reader.readDeckFile(testPath),numberOfPlayers);
 
         p1.setDeck(aDeck);
         p2.setDeck(aDeck);
 
         //end of initialisation
-
-        assertEquals(16, p1.getDeck().size());
-        p1.haveTurn();
+        p1.drawToHand();
         assertEquals(15, p1.getDeck().size());
+        p1.haveTurn();
+        assertEquals(14, p1.getDeck().size());
         assertEquals(17, p2.getDeck().size());
+
+    }
+
+    @Test
+
+
+    //doesn't work should be deleted later
+    public void shouldCompleteTheGameInThread(){
+        int aNumberOfPlayers = 4;
+        String aPath = "./test_resources/TestPack4Players.txt";
+        ArrayList<Player> aPlayerList = (CardGame.setupPlayers(4));
+
+        CardGame.givePlayersTheirDecks( aPlayerList, aPath, aNumberOfPlayers);
+        CardGame.playersDrawTheirInitialCards( aPlayerList);
+        aPlayerList.get(0).start();
+        System.out.println("Start assert");
 
     }
 
