@@ -28,9 +28,24 @@ public class CardGameTest {
 
         //tests different location in memory for both players decks
         //drawing from one should not affect the other.
-        assertEquals( 15, updatedMockPlayerList.get(0).getDeck().size());
-        assertEquals( 16, updatedMockPlayerList.get(1).getDeck().size());
+        assertEquals( 7, updatedMockPlayerList.get(0).getDeck().size());
+        assertEquals( 8, updatedMockPlayerList.get(1).getDeck().size());
 
+    }
+
+ 
+    @Test
+
+    public void shouldWinTheGameInstantly(){
+        int numberOfPlayers = 1;
+        String testPath = "./test_resources/TestPack1Player.txt";
+        ArrayList<Player> PlayerList = CardGame.setupPlayers(numberOfPlayers);
+        CardGame.givePlayersTheirDecks(PlayerList, testPath, numberOfPlayers);
+        CardGame.playersDrawTheirInitialCards(PlayerList);
+        assertEquals( 1, CardGame.winningPlayerNumber);
+        assertEquals( true, CardGame.gameFinished);
+        
+            
     }
     
 }

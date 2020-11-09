@@ -59,16 +59,25 @@ public class Player extends Thread {
     //setter for the player's deck
     public void setDeck(Deck iDeck){
         this.deck = new Deck(iDeck);
-    }
-    
+        if(iDeck.size() != 8){
+			System.out.println("//!\\ERROR//!\\: THE AMOUNT OF NUMBERS IN THE DECK IS NOT EQUAL TO, " + 8 + "it is, of size "+ iDeck.size() + " instead");
+		    }
+        }
 
 
     //getter for the player's deck
     public Deck getDeck(){
         return this.deck;
     }
-    
-    
+
+    //a method to see if the player has all cards dealt to him at the beginning of the game equal, thus winning the game
+    public Boolean doIhaveFourCardTheSame(){
+        if (hand.get(0).getNumber()== hand.get(1).getNumber() && hand.get(1).getNumber() == hand.get(2).getNumber() && hand.get(2).getNumber() == hand.get(3).getNumber()){
+            return true;
+        }else{
+            return false;
+        }          
+    }
 
     //the players are the ones who's action can draw a card, so it makes sense to have it being called through them and not through the deck itself
     public void drawToHand(){
@@ -146,7 +155,7 @@ public class Player extends Thread {
     public void run(){
         System.out.println("Running player number" + playerNumber );
             while(CardGame.gameFinished == false){
-                if(!nextPlayer.deck.isEmpty()){
+                if(!deck.isEmpty()){
                     haveTurn();
                 }
             }

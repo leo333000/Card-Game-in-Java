@@ -12,22 +12,21 @@ public class Deck extends ArrayList<Card> {
     }
 
 
-    public  Deck(ArrayList<Integer> listOfInts, int numberOfPlayers){
+    public Deck(ArrayList<Integer> listOfInts, int numberOfPlayers){
         initialise(listOfInts, numberOfPlayers);
 
     }
 
+    public Deck(){
+      this.clear();
+      //create an empty list 
+      }
+
     private void initialise(ArrayList<Integer> listInDeck, int numberOfPlayers){
-		
-		if(listInDeck.size() == numberOfPlayers*8)
-		{
 			for(int i = 0; i < listInDeck.size(); i++) {
 				Card currentBottomCard = new Card(listInDeck.get(i));
 				this.add(currentBottomCard);
 			  }
-		} else {
-			System.out.println("//!\\ERROR//!\\: THE AMOUNT OF NUMBERS IN THE FILE IS NOT EQUAL TO, " + numberOfPlayers*8);
-		  }
     }
 
     public Card drawTop() {

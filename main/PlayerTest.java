@@ -79,7 +79,6 @@ public class PlayerTest {
         assertEquals(17, p2.getDeck().size());
 
     }
-
     
 
 }

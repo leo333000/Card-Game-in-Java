@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class CardGame {
 
-    //standard global path to the pack.txt
+    //standard global path to the pack.txt, used only for tests, will be overwritten in main
     static String packFilePath = "resources/pack.txt";
 
     //importance of the volatile keyword to make sure they all end the game in sync
@@ -43,10 +43,16 @@ public class CardGame {
 
         
         Deck aDeck = new Deck(FileManager.readDeckFile(iPath),iNumberOfPlayers);
-
+        Deck cardsDealtToSpecificPlayer = new Deck();
         for (int i = 0; i < (iPlayerList.size()); i++){
+            for (int j = i; j < aDeck.size(); j = j+iPlayerList.size()){
+                cardsDealtToSpecificPlayer.add(aDeck.get(j));
+            }
+
             //the way setDeck() works is that it will clone the deck, so they are not all pointing to the same memory slot
-            iPlayerList.get(i).setDeck(aDeck);
+            iPlayerList.get(i).setDeck(cardsDealtToSpecificPlayer);
+            cardsDealtToSpecificPlayer.clear();
+
         }
 
         return iPlayerList;
@@ -63,7 +69,14 @@ public class CardGame {
             iPlayerList.get(i).drawToHand();
             iPlayerList.get(i).drawToHand();
             iPlayerList.get(i).drawToHand();
+            
+            if(iPlayerList.get(i).doIhaveFourCardTheSame()){
+                CardGame.gameFinished = true;
+                //the player 1 is in position 0 in the list
+                CardGame.winningPlayerNumber = i+1;
+            }
         }
+
     }
 
 
@@ -95,7 +108,7 @@ public class CardGame {
         while(inputMade == false)
         try {
             numberOfPlayers = Integer.parseInt(scanner.next());
-            System.out.print("\n now enter the file path of the deck (default 'resources/pack.txt')");
+            System.out.print("\n now enter the file path of the deck (for example: 'resources/pack.txt')");
             packFilePath = scanner.next();
             inputMade = true;
          }
@@ -114,32 +127,8 @@ public class CardGame {
         playersDrawTheirInitialCards(PlayerList);
         startTheGameForAllPlayers(PlayerList);
 
-
-    
-    
-
-
-
     }
 
 
-
-
-        // //create a first player who has no one to point to for his nextPlayer variable, as he is so far alone in the list.
-        // Player firstPlayer  =  new Player();
-        // ArrayList<Player> playerList = new ArrayList<Player>();
-        // playerList.add(firstPlayer);
-
-        // //the first player is already created so make numberOfPlayers-1 more players
-        // for (int i = 0; i < (numberOfPlayers-1); i++) {
-        //     Player extraPlayer  =  new Player(firstPlayer);
-        //     playerList.add(extraPlayer);
-        //   }
-        //   //finally this sets the first player of the list nextPlayer to point to the last player of the list
-        //   playerList.get(0).SetNextPlayer(playerList.get(playerList.size()-1));
-
-        // System.out.println(playerList.get(0).nextPlayer);
-        
-
-    }
+}
 
