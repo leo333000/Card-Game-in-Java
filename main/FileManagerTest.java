@@ -14,15 +14,28 @@ public class FileManagerTest {
 
     //tests the readDeckFile function
     @Test
-    public void ReadFileDeckTest() {
-        FileManager read = new FileManager();
+    public void shouldGiveErrorOfEmptyFile() {
+        
         ArrayList<Integer> test = new ArrayList<Integer>();
-        assertEquals(test, read.readDeckFile("./test_resources/testpackempty.txt"));
-    
+        assertEquals(test, FileManager.readDeckFile("./test_resources/TestPackEmpty.txt"));
     }
-
     @Test
-  public void currentDirTest(){
-    System.out.println("Working Directory = " + System.getProperty("user.dir"));   
+    public void shouldGiveErrorOfIllegalPackChar() {
+        
+        ArrayList<Integer> test = new ArrayList<Integer>();
+        assertEquals(test, FileManager.readDeckFile("./test_resources/TestPackIllegal.txt"));
+    }
+    @Test
+    public void shouldGiveErrorOfNegativeInt() {
+        
+        ArrayList<Integer> test = new ArrayList<Integer>();
+        assertEquals(test, FileManager.readDeckFile("./test_resources/TestPackIllegalNegative.txt"));
+    }
+    @Test
+    public void shouldNotFindFile() {
+        
+        ArrayList<Integer> test = new ArrayList<Integer>();
+        assertEquals(test, FileManager.readDeckFile("./test_resources/DoesNotExist.txt"));
+    }
+    
   }
-}

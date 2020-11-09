@@ -41,8 +41,8 @@ public class CardGame {
 
     public static ArrayList<Player> givePlayersTheirDecks(ArrayList<Player> iPlayerList, String iPath, int iNumberOfPlayers){
 
-        FileManager reader = new FileManager();
-        Deck aDeck = new Deck(reader.readDeckFile(iPath),iNumberOfPlayers);
+        
+        Deck aDeck = new Deck(FileManager.readDeckFile(iPath),iNumberOfPlayers);
 
         for (int i = 0; i < (iPlayerList.size()); i++){
             //the way setDeck() works is that it will clone the deck, so they are not all pointing to the same memory slot

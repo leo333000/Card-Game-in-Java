@@ -1,9 +1,6 @@
 package main;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-
-import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -17,9 +14,8 @@ public class PlayerTest {
 
         int numberOfPlayers = 1;
 
-        FileManager reader = new FileManager();
         String testPath = "./test_resources/TestPack1Player.txt";
-        Deck aDeck = new Deck(reader.readDeckFile(testPath),numberOfPlayers);
+        Deck aDeck = new Deck(FileManager.readDeckFile(testPath),numberOfPlayers);
 
         assertEquals(8,aDeck.size());
 
@@ -42,9 +38,8 @@ public class PlayerTest {
 
         int numberOfPlayers = 2;
 
-        FileManager reader = new FileManager();
         String testPath = "./test_resources/TestPack2Players.txt";
-        Deck aDeck = new Deck(reader.readDeckFile(testPath),numberOfPlayers);
+        Deck aDeck = new Deck(FileManager.readDeckFile(testPath),numberOfPlayers);
 
         p1.setDeck(aDeck);
         p2.setDeck(aDeck);
@@ -70,9 +65,8 @@ public class PlayerTest {
 
         int numberOfPlayers = 2;
 
-        FileManager reader = new FileManager();
         String testPath = "./test_resources/TestPack2Players.txt";
-        Deck aDeck = new Deck(reader.readDeckFile(testPath),numberOfPlayers);
+        Deck aDeck = new Deck(FileManager.readDeckFile(testPath),numberOfPlayers);
 
         p1.setDeck(aDeck);
         p2.setDeck(aDeck);
@@ -86,20 +80,6 @@ public class PlayerTest {
 
     }
 
-    @Test
-
-
-    //doesn't work should be deleted later
-    public void shouldCompleteTheGameInThread(){
-        int aNumberOfPlayers = 4;
-        String aPath = "./test_resources/TestPack4Players.txt";
-        ArrayList<Player> aPlayerList = (CardGame.setupPlayers(4));
-
-        CardGame.givePlayersTheirDecks( aPlayerList, aPath, aNumberOfPlayers);
-        CardGame.playersDrawTheirInitialCards( aPlayerList);
-        aPlayerList.get(0).start();
-        System.out.println("Start assert");
-
-    }
+    
 
 }

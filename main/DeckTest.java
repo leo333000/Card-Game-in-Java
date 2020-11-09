@@ -14,10 +14,9 @@ public class DeckTest {
     public void shouldReadDeckFromFileTest() {
         
         int numberOfPlayers = 4;
-        FileManager reader = new FileManager();
         String testPath = "./test_resources/TestPack4Players.txt";
 
-        Deck deck1 = new Deck(reader.readDeckFile(testPath),numberOfPlayers);
+        Deck deck1 = new Deck(FileManager.readDeckFile(testPath),numberOfPlayers);
 
         assertEquals(3,deck1.drawTop().getNumber());
         assertEquals(2,deck1.drawTop().getNumber());
@@ -37,5 +36,9 @@ public class DeckTest {
         
         assertEquals(1,deck1.drawTop().getNumber());
     
+    }
+    @Test
+    public void shouldCheckErrorConditions() {
+
     }
 }

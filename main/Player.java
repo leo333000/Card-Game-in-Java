@@ -1,6 +1,6 @@
 package main;
 
-
+import java.util.ArrayList;
 
 public class Player extends Thread {
 
@@ -8,7 +8,7 @@ public class Player extends Thread {
     
     private Deck deck;
 
-    private Hand hand = new Hand();
+    private ArrayList<Card> hand = new ArrayList<Card>() ;
 
     private int playerNumber ;
 
@@ -81,7 +81,7 @@ public class Player extends Thread {
 
 
 
-    public Hand getHand(){
+    public ArrayList<Card> getHand(){
         return hand;
     }
 
@@ -167,7 +167,7 @@ public class Player extends Thread {
         FileManager.writeFile(log , playerRemainingDeckPath);
         
         System.out.println("Thread " +  playerNumber + " exiting.");
-        FileManagement.writeFile("Thread " +  playerNumber + " exiting.", playerLogPath);
+        FileManager.writeFile("Thread " +  playerNumber + " exiting.", playerLogPath);
      }
      
 }

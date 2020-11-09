@@ -11,15 +11,15 @@ import java.util.Scanner;
 public class FileManager{
 
 
-    public ArrayList<Integer> readDeckFile(String path) {
+    public static ArrayList<Integer> readDeckFile(String path) {
 
         ArrayList<Integer> indexCards = new ArrayList<Integer>();
 
-    try {
-        File myObj = new File(path);
-        Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine()) {
-          String data = myReader.nextLine();
+        try {
+            File myObj = new File(path);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
 
                 int i = Integer.parseInt(data.trim());
                 if(i < 1) {
@@ -29,16 +29,24 @@ public class FileManager{
                 }else{
                      indexCards.add(i);
                      }
+                }
+            myReader.close();
+        }catch (NumberFormatException nfe){
+            
+            System.out.println("//!\\ERROR//!\\: THE CHARACTER IN THE FILE IS NOT A INT " + nfe.getMessage());
+            ArrayList<Integer> emptyList = new ArrayList<Integer>();
+            return emptyList;   
+        }catch (FileNotFoundException e) {
+            System.out.println("//!\\ERROR//!\\: FILE NOT FOUND WITH PATH, " + path);
+            e.printStackTrace();
+            ArrayList<Integer> emptyList = new ArrayList<Integer>();
+            return emptyList;
             }
-        myReader.close();
-    }catch (NumberFormatException nfe){
-        {
-       System.out.println("//!\\ERROR//!\\: THE CHARACTER IN THE FILE IS NOT A INT " + nfe.getMessage());
-        }
-    }catch (FileNotFoundException e) {
-        System.out.println("//!\\ERROR//!\\: FILE NOT FOUND WITH PATH, " + path);
-        e.printStackTrace();
-        }
+        if(indexCards.isEmpty()){
+            System.out.println("//!\\ERROR//!\\: THE FILE IS EMPTY ");
+            ArrayList<Integer> emptyList = new ArrayList<Integer>();
+            return emptyList;
+            }
 
         return indexCards;
 
